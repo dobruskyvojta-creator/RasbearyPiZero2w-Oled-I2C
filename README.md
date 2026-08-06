@@ -14,6 +14,15 @@ The goal of this project is to create a small system stats display using an I2C 
 ## Setup | `SETUP.sh`
 
 To install all required dependencies and prepare the Raspberry Pi, run:
-
 ```bash
 bash SETUP.sh
+```
+## Update | `UPDATE.sh`
+
+When a new update is released, you don't need to reinstall the whole project.
+
+Run:
+
+```bash
+bash UPDATE.sh
+```
