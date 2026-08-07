@@ -1,27 +1,49 @@
 # In this code we will get the system information of the Raspberry Pi and display it on the OLED screen using I2C communication.
 
 #Imports
-from PIL import Image, ImageDraw
-import luma.oled
+from PIL import Image, ImageDraw, ImageFont
+import adafruit_ssd1306
 import psutil
 import smbus2
+import subprocess
+import board
+import busio
 
-# Display Parameters
-WIDTH = 128
+#comunication with the OLED display trought pins
+i2c = busio.I2C(board.SCL, board.SDA)
+
+#The size of the display
+WIDTH = 128 
 HEIGHT = 64
-BORDER = 5
 
-# Display Refresh
-LOOPTIME = 1.0
+#Display 
+oled = adafruit_ssd1306.SSD1306_I2C(
+    WIDTH,
+    HEIGHT,
+    i2c,
+    addr=0x3C
+)
 
-from PIL import Image, ImageDraw
 
-image = Image.new("1", (128, 64))
+
+oled.fill(0)
+oled.show()
+
+
+image = Image.new(
+    "1",
+    (WIDTH, HEIGHT)
+)
+
 draw = ImageDraw.Draw(image)
 
-draw.line((0, 10, 127, 10), fill=255)
+draw.text(
+    (0, 0),
+    "TEMP CPU: {} C".format(psutil.sensors_temperatures()['cpu_thermal'][0].current),
+    font=ImageFont.load_default(),
+    fill=255
+)
 
-image.show()
-    
-# TEMP watch -n 1 vcgencmd measure_temp
+oled.image(image)
+oled.show()
 # what we want : TEMP CPU ... TEMP OUTSIDE ... CLOCK + DATE .. BATTER and IP 
