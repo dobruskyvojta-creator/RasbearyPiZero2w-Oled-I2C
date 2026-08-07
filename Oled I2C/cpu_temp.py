@@ -1,7 +1,6 @@
 # In this code we will get the system information of the Raspberry Pi and display it on the OLED screen using I2C communication.
 
 #Imports
-from curses import raw
 
 from PIL import Image, ImageDraw, ImageFont
 import adafruit_ssd1306
@@ -41,24 +40,15 @@ image = Image.new(
 draw = ImageDraw.Draw(image)
 
 # Draw the CPU temperature on the OLED display
-draw.text(
-    (0, 0),
-    "TEMP CPU: {} C".format(psutil.sensors_temperatures()['cpu_thermal'][0].current),
-    font=ImageFont.load_default(),
-    fill=255
-)
-
-
-def cpu_temp(draw):
+def draw_cpu_temp(draw):
     draw.text(
-        (30, 40),
+        (0, 0),
         "TEMP CPU: {} C".format(psutil.sensors_temperatures()['cpu_thermal'][0].current),
         font=ImageFont.load_default(),
         fill=255
 )
 
-cpu_temp(draw)
+draw_cpu_temp(draw)
 
 oled.image(image)
 oled.show()
-# what we want : TEMP CPU ... TEMP OUTSIDE ... CLOCK + DATE .. BATTERY and IP 
