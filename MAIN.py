@@ -1,49 +1,47 @@
-# In this code we will get the system information of the Raspberry Pi and display it on the OLED screen using I2C communication.
-
-#Imports Libraries
-
 from PIL import Image, ImageDraw, ImageFont
 import adafruit_ssd1306
 import psutil
-import smbus2
-import subprocess
 import board
 import busio
+import time
 
-#Imports
+# Tvoje vlastní draw funkce
 from oled_i2c.cpu_temp import draw_cpu_temp
 
-#comunication with the OLED display trought pins
+# INA219
+from ina219 import INA219
+ina = INA219(addr=0x43)          # ← zkontroluj adresu (i2cdetect -y 1)
+
+# OLED
 i2c = busio.I2C(board.SCL, board.SDA)
-
-#The size of the display
-WIDTH = 128 
+WIDTH = 128
 HEIGHT = 64
+oled = adafruit_ssd1306.SSD1306_I2C(WIDTH, HEIGHT, i2c)
 
-#Display 
-oled = adafruit_ssd1306.SSD1306_I2C(
-    WIDTH,
-    HEIGHT,
-    i2c,
-)
+# Font
+font = ImageFont.load_default()
 
+def draw_battery(draw, ina):
+    percent = ina.getPercent()
+    draw.text((0, 16), f"BATERIE: {percent} %", font=font, fill=255)
 
-# Clear the display
-oled.fill(0)
-oled.show()
+# Hlavní smyčka
+while True:
+    # Vytvoř čistý obrázek
+    image = Image.new("1", (WIDTH, HEIGHT))
+    draw = ImageDraw.Draw(image)
 
-# Create a blank image for drawing.
-image = Image.new(
-    "1",
-    (WIDTH, HEIGHT)
-)
+    # Nakresli, co chceš
+    draw_cpu_temp(draw)          # TEMP CPU
+    draw_battery(draw, ina)      # BATERIE %
 
-# Get a drawing object to draw on the image.
-draw = ImageDraw.Draw(image)
+    # Sem později přidáš:
+    # draw_clock(draw)
+    # draw_ip(draw)
+    # draw_outside_temp(draw)
 
+    # Zobraz
+    oled.image(image)
+    oled.show()
 
-draw_cpu_temp(draw)
-
-oled.image(image)
-oled.show()
-# what we want : 1. TEMP CPU ... .2 BATTERY % ... CLOCK + DATE  and IP & TEMP OUTSIDE
+    time.sleep(2)
