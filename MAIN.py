@@ -3,7 +3,7 @@ import adafruit_ssd1306
 import board
 import busio
 import time
-from BACKEND import get_system_stats
+import BACKEND
 
 
 
