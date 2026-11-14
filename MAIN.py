@@ -7,6 +7,9 @@ from BACKEND import get_system_stats
 
 
 
+
+
+
 # OLED
 i2c = busio.I2C(board.SCL, board.SDA)
 WIDTH = 128
