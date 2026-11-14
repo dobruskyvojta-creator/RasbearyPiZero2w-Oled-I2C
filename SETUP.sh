@@ -1,3 +1,4 @@
+
 #!/bin/bash
 
 echo "[+] Updating system..."
@@ -21,7 +22,9 @@ adafruit-circuitpython-ssd1306 \
 pillow \
 psutil \
 smbus2 \
-luma.oled
+luma.oled \
+Adafruit-Blinka-Raspberry-Pi-PWM \
+rpi_ws281x
 
 echo "[+] Testing libraries..."
 python3 - <<EOF
@@ -41,4 +44,3 @@ wget https://files.waveshare.com/upload/4/40/UPS_HAT_C.7z
 
 echo "[+] Done!"
 echo "[!] Please reboot your Raspberry Pi to apply changes."
-
