@@ -10,6 +10,7 @@ sudo apt install -y \
 python3-pip \
 python3-smbus \
 i2c-tools \
+sudo apt install p7zip-full \
 python3-pil
 
 
@@ -36,6 +37,10 @@ import smbus2
 print("Libraries OK")
 EOF
 
+echo "[+] Downloading and Opening the wget https://files.waveshare.com/upload/4/40/UPS_HAT_C.7z "
+cd ~
+wget https://files.waveshare.com/upload/4/40/UPS_HAT_C.7z
+7zr x UPS_HAT_C.7z
 
 echo "[+] Done!"
 
