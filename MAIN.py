@@ -6,9 +6,6 @@ import time
 from BACKEND import get_system_stats
 
 
-ina219 = INA219(addr=0x43)
-
-
 
 # OLED
 i2c = busio.I2C(board.SCL, board.SDA)
