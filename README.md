@@ -5,7 +5,7 @@ A small project for testing and using OLED displays and other hardware component
 The goal of this project is to create a small system stats display using an I2C OLED display:
 - CPU temperature
 - Date and time
-- Battery status (Waveshare UPS HAT)
+- Battery status (Waveshare UPS HAT C)
 - IP address
 - More sensors in the future
 
