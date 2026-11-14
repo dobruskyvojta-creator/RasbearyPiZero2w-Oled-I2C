@@ -36,7 +36,7 @@ while True:
     draw.text((0, 0), "PI ZERO 2 W", fill=255)
     draw.text((0, 15), f"IP: {IP}", fill=255)
 
-    draw.text((0, 30), f"CPU: {CPU_TEMP}°C", fill=255)
+    draw.text((0, 30), f"CPU: {CPU_TEMP:.1f}°C", fill=255)
     draw.text((0, 40), f"LOAD: {CPU_USAGE}%", fill=255)
 
     #draw.text((0, 34), f"RAM: {TOTAL_MEM_SPACE}", fill=255)
