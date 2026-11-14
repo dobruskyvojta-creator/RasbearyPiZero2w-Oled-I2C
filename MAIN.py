@@ -20,7 +20,7 @@ oled = adafruit_ssd1306.SSD1306_I2C(WIDTH, HEIGHT, i2c)
 
 # Hlavní smyčka
 while True:
-    IP,CPU_TEMP,CPU_USAGE,TOTAL_MEM_SPACE,MEM_AVAILABLE,P = BACKEND.get_system_stats()
+    CPU_TEMP, CPU_USAGE, P, IP, TOTAL_MEM_SPACE, MEM_AVAILABLE = BACKEND.get_system_stats()
 
     image = Image.new("1", (WIDTH, HEIGHT))
     draw = ImageDraw.Draw(image)
