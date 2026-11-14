@@ -1,4 +1,3 @@
-```bash
 #!/bin/bash
 
 echo "[+] Updating system..."
@@ -42,4 +41,4 @@ wget https://files.waveshare.com/upload/4/40/UPS_HAT_C.7z
 
 echo "[+] Done!"
 echo "[!] Please reboot your Raspberry Pi to apply changes."
-```
+
