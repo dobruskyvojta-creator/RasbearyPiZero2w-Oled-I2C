@@ -24,7 +24,7 @@ while True:
 
     image = Image.new("1", (WIDTH, HEIGHT))
     draw = ImageDraw.Draw(image)
-    
+
     # draw.text((0, 0), "RASPBERRY PI ZERO 2 WH", fill=255)
     # draw.text((0, 9), f"IP ADRESS: {IP}%", fill=255)
     # draw.text((0, 18), f"CPU TEMP: {CPU_TEMP}%", fill=255)
@@ -34,13 +34,13 @@ while True:
     # draw.text((0, 54), f"BATTERY: {P:.1f}%", fill=255)
 
     draw.text((0, 0), "PI ZERO 2 W", fill=255)
-    draw.text((0, 10), f"IP: {IP}", fill=255)
+    draw.text((0, 12), f"IP: {IP}", fill=255)
 
-    draw.text((0, 22), f"CPU: {CPU_TEMP}C", fill=255)
-    draw.text((68, 22), f"LOAD: {CPU_USAGE}%", fill=255)
+    draw.text((0, 22), f"CPU: {CPU_TEMP}", fill=255)
+    draw.text((68, 40), f"LOAD: {CPU_USAGE}%", fill=255)
 
-    draw.text((0, 34), f"RAM: {TOTAL_MEM_SPACE}", fill=255)
-    draw.text((68, 34), f"FREE: {MEM_AVAILABLE}", fill=255)
+    #draw.text((0, 34), f"RAM: {TOTAL_MEM_SPACE}", fill=255)
+    #draw.text((68, 34), f"FREE: {MEM_AVAILABLE}", fill=255)
 
     draw.text((0, 50), f"BATTERY: {P:.1f}%", fill=255)
     
